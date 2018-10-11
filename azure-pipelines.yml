@@ -1,6 +1,7 @@
 # CI for wxPython Phoenix on Azure DevOps
 
 trigger: ['master', 'wxPy-4.0.x']
+env: {'PYTHONUNBUFFERED': '1'}
 
 jobs:
 
@@ -30,8 +31,20 @@ jobs:
       architecture: 'x64'
 
   - script: |
+      sudo apt-get update
+      sudo apt-get install -y build-essential
+      sudo apt-get install -y libgtk2.0-dev libgtk-3-dev \
+          libjpeg-dev libtiff-dev \
+          libsdl1.2-dev libgstreamer-plugins-base0.10-dev \
+          libgstreamer-plugins-base1.0-dev \
+          libnotify-dev freeglut3 freeglut3-dev libsm-dev \
+          libwebkitgtk-dev libwebkitgtk-3.0-dev
+
+
+  - script: |
       python --version 
-      python -m pip install --upgrade pip && pip install -r requirements.txt
+      python -m pip install --upgrade pip 
+      python -m pip install -r requirements.txt
     displayName: 'Install Python dependencies'
 
   - script: |
