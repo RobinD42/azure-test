@@ -1,6 +1,6 @@
 # CI for wxPython Phoenix on Azure DevOps
 
-trigger: master, wxPy-4.0.x
+trigger: ['master', 'wxPy-4.0.x']
 
 jobs:
 
