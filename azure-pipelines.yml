@@ -1,12 +1,11 @@
 # CI for wxPython Phoenix on Azure DevOps
 
 trigger: ['master', 'wxPy-4.0.x']
-env: {'PYTHONUNBUFFERED': '1'}
 
 jobs:
 
 - job: Linux
-  displayName: Linux builds
+  displayName: Linux
   pool:
     vmImage: 'Ubuntu 16.04'
   strategy:
@@ -20,6 +19,8 @@ jobs:
       Python37:
         python.version: '3.7'
     maxParallel: 4
+
+  env: {'PYTHONUNBUFFERED': '1'}
 
   steps:
   - checkout: self
