@@ -20,7 +20,7 @@ jobs:
         python.version: '3.7'
     maxParallel: 4
 
-  env: {'PYTHONUNBUFFERED': '1'}
+  variables: {'PYTHONUNBUFFERED': '1'}
 
   steps:
   - checkout: self
