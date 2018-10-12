@@ -17,15 +17,19 @@ jobs:
     matrix: 
       Python27:
         python_version: '2.7.15'
+        python_pkg: 'python-2.7.15-macosx10.9.pkg'
         python: 'python2.7'
       Python35:
         python_version: '3.5.4'
+        python_pkg: 'python-3.5.4-macosx10.6.pkg'
         python: 'python3.5'
       Python36:
         python_version: '3.6.6'
+        python_pkg: 'python-3.6.6-macosx10.9.pkg'
         python: 'python3.6'
       Python37:
         python_version: '3.7.0'
+        python_pkg: 'python-3.7.0-macosx10.9.pkg'
         python: 'python3.7'
     maxParallel: 4
 
@@ -37,8 +41,8 @@ jobs:
     submodules: recursive
 
   - script: |
-      curl -O https://www.python.org/ftp/python/$PYTHON_VERSION/python-$PYTHON_VERSION-macosx10.9.pkg
-      sudo installer -pkg python-$PYTHON_VERSION-macosx10.9.pkg -target /
+      curl -O https://www.python.org/ftp/python/$PYTHON_VERSION/$PYTHON_PKG
+      sudo installer -pkg $PYTHON_PKG -target /
       which $PYTHON
       $PYTHON --version
     displayName: 'Fetch Python'
