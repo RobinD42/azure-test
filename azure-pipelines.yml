@@ -30,6 +30,11 @@ jobs:
       versionSpec: '$(python.version)'
       architecture: 'x64'
 
+  - task: Xcode@5
+    inputs:
+      sdk: 'MacOSX'
+      xcodeVersion: '9'       
+
   - script: |
       which python
       python --version 
