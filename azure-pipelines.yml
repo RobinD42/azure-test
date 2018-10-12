@@ -48,7 +48,8 @@ jobs:
     displayName: 'Fetch Python'
 
   - script: |
-      $PYTHON -m pip install --upgrade pip 
+      curl -O https://bootstrap.pypa.io/get-pip.py
+      $PYTHON get-pip.py
       $PYTHON -m pip install -r requirements.txt
     displayName: 'Install Python dependencies'
 
