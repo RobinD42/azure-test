@@ -27,7 +27,7 @@ jobs:
       Python37:
         python_version: '3.7.0'
         python: 'python3.7'
-      maxParallel: 4
+    maxParallel: 4
 
 
   variables: {'PYTHONUNBUFFERED': '1'}
