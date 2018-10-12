@@ -291,6 +291,7 @@ def main(wxDir, args):
                             "--disable-debugreport",
                             "--enable-uiactionsim",
                             "--enable-autoidman",
+                            "--without-liblzma",   # TODO: fix this
                             ]
 
         if sys.platform.startswith("darwin"):
