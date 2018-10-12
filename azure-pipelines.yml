@@ -30,11 +30,6 @@ jobs:
       versionSpec: '$(python.version)'
       architecture: 'x64'
 
-  - task: Xcode@5
-    inputs:
-      sdk: 'MacOSX'
-      xcodeVersion: '9'       
-
   - script: |
       which python
       python --version 
@@ -43,6 +38,7 @@ jobs:
     displayName: 'Install Python dependencies'
 
   - script: |
+      sudo xcode-select -s /Applications/Xcode_9.4.1.app/Contents/Developer
       python build.py --jobs=4 dox build_wx
     displayName: 'build wxWidgets'
 
