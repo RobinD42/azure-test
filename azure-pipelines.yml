@@ -1,6 +1,11 @@
 # CI for wxPython Phoenix on Azure DevOps
 
-trigger: ['master', 'wxPy-4.0.x']
+trigger: 
+  branches:
+    include:
+    - master
+    - wxPy-4.0.x
+
 
 jobs:
 
@@ -11,13 +16,19 @@ jobs:
   strategy:
     matrix: 
       Python27:
-        python.version: '2.7'
+        python_version: '2.7.15'
+        python: 'python2.7'
       Python35:
-        python.version: '3.5'
+        python_version: '3.5.6'
+        python: 'python3.5'
       Python36:
-        python.version: '3.6'
+        python_version: '3.6.6'
+        python: 'python3.6'
       Python37:
-        python.version: '3.7'
+        python_version: '3.7.0'
+        python: 'python3.7'
+      maxParallel: 4
+
 
   variables: {'PYTHONUNBUFFERED': '1'}
 
@@ -25,32 +36,33 @@ jobs:
   - checkout: self
     submodules: recursive
 
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '$(python.version)'
-      architecture: 'x64'
-
   - script: |
-      which python
-      python --version 
-      python -m pip install --upgrade pip 
-      python -m pip install -r requirements.txt
+      curl -O https://www.python.org/ftp/python/$PYTHON_VERSION/python-$PYTHON_VERSION-macosx10.9.pkg
+      sudo installer -pkg python-$PYTHON_VERSION-macosx10.9.pkg -target /
+      which $PYTHON
+      $PYTHON --version
+    displayName: 'Fetch Python'
+
+    - script: |
+      $PYTHON -m pip install --upgrade pip 
+      $PYTHON -m pip install -r requirements.txt
     displayName: 'Install Python dependencies'
 
   - script: |
-      sudo xcode-select -s /Applications/Xcode_9.4.1.app/Contents/Developer
-      xcode-select -p
-      python build.py --jobs=4 dox build_wx
+      #sudo xcode-select -s /Applications/Xcode_9.4.1.app/Contents/Developer
+      #xcode-select -p
+      $PYTHON build.py --jobs=4 build_wx
     displayName: 'build wxWidgets'
 
   - script: |
-      python build.py --jobs=4 etg --nodoc sip build_py
+      $PYTHON build.py dox etg --nodoc sip
+      $PYTHON build.py --jobs=4 build_py
     displayName: 'build wxPython'
 
   - script: |
-      python build.py bdist_wheel
-      python build.py install
-      python -c "import wx; print(wx.version());"
+      $PYTHON build.py bdist_wheel
+      sudo $PYTHON build.py install
+      $PYTHON -c "import wx; print(wx.version());"
     displayName: 'build wheel and test install'
 
 
