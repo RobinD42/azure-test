@@ -5,7 +5,7 @@ trigger: ['master', 'wxPy-4.0.x']
 jobs:
 
 - job: Linux
-  displayName: Linux
+  displayName: Linux 
   pool:
     vmImage: 'Ubuntu 16.04'
   strategy:
@@ -26,6 +26,13 @@ jobs:
   - checkout: self
     submodules: recursive
 
+  - script: |
+      python2.7 --version || true
+      python3.5 --version || true
+      python3.6 --version || true
+      python3.7 --version || true
+    displayName: 'which stock pythons are here'
+
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '$(python.version)'
@@ -40,6 +47,7 @@ jobs:
           libgstreamer-plugins-base1.0-dev \
           libnotify-dev freeglut3 freeglut3-dev libsm-dev \
           libwebkitgtk-dev libwebkitgtk-3.0-dev
+    displayName: 'Install deb packages'
 
 
   - script: |
