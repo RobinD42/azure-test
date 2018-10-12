@@ -291,6 +291,7 @@ def main(wxDir, args):
                             "--disable-debugreport",
                             "--enable-uiactionsim",
                             "--enable-autoidman",
+                            "--without-liblzma",
                             ]
 
         if sys.platform.startswith("darwin"):
@@ -303,7 +304,7 @@ def main(wxDir, args):
         # version present on the build machine.
         # TODO: should there be a command line option to set the SDK?
         if sys.platform.startswith("darwin"):
-            wxpy_configure_opts.append("--with-macosx-version-min=10.6")
+            wxpy_configure_opts.append("--with-macosx-version-min=10.7")
             for xcodePath in getXcodePaths():
                 sdks = [ xcodePath+"/SDKs/MacOSX10.{}.sdk".format(n)
                          for n in range(6, 15) ]
