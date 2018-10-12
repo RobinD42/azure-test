@@ -43,7 +43,7 @@ jobs:
       $PYTHON --version
     displayName: 'Fetch Python'
 
-    - script: |
+  - script: |
       $PYTHON -m pip install --upgrade pip 
       $PYTHON -m pip install -r requirements.txt
     displayName: 'Install Python dependencies'
