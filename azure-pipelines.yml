@@ -19,10 +19,10 @@ jobs:
         python_version: '2.7.15'
         python_pkg: 'python-2.7.15-macosx10.9.pkg'
         python: 'python2.7'
-      Python35:
-        python_version: '3.5.4'
-        python_pkg: 'python-3.5.4-macosx10.6.pkg'
-        python: 'python3.5'
+      #Python35:
+      #  python_version: '3.5.4'
+      #  python_pkg: 'python-3.5.4-macosx10.6.pkg'
+      #  python: 'python3.5'
       Python36:
         python_version: '3.6.6'
         python_pkg: 'python-3.6.6-macosx10.9.pkg'
