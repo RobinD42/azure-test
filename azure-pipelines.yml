@@ -87,11 +87,11 @@ jobs:
         python: 'python3.7'
     maxParallel: 3
 
-   variables: {'PYTHONUNBUFFERED': '1'}
+  variables: {'PYTHONUNBUFFERED': '1'}
 
-   steps:
-   - checkout: self
-     submodules: recursive
+  steps:
+  - checkout: self
+    submodules: recursive
 
   - script: |
       sudo add-apt-repository ppa:deadsnakes/ppa
