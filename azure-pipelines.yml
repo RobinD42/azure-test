@@ -2,11 +2,11 @@
 
 #pipelines:
 #- pipeline:
-#  name: wxPython-CI
+#  name: CI.$(Date:yyyyMMdd).$(Rev:.r)
 
 jobs:
-- template: .azure/macos-ci-job.yml
-- template: .azure/linux-ci-job.yml
+- template: .azure/ci-linux-job.yml
+- template: .azure/ci-macos-job.yml
 
 
 
