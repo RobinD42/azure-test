@@ -2,7 +2,9 @@
 
 #pipelines:
 #- pipeline:
-#  name: CI.$(Date:yyyyMMdd).$(Rev:.r)
+#  
+
+name: CI.$(Date:yyyyMMdd).$(Rev:.r)
 
 jobs:
 #- template: .azure/ci-linux-job.yml
