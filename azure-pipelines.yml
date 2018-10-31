@@ -5,8 +5,8 @@
 #  name: wxPython-CI
 
 jobs:
-- template: .azure/maxos-ci-job.yaml
-- template: .azure/linux-ci-job.yaml
+- template: .azure/maxos-ci-job.yml
+- template: .azure/linux-ci-job.yml
 
 
 
