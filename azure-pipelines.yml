@@ -5,8 +5,8 @@
 #  name: wxPython-CI
 
 jobs:
-- template: ./.azure/macos-ci-job.yml
-- template: ./.azure/linux-ci-job.yml
+- template: .azure/macos-ci-job.yml
+- template: .azure/linux-ci-job.yml
 
 
 
